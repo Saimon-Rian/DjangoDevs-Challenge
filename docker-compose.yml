@@ -4,15 +4,22 @@ services:
 
   db:
     image: postgres
+    container_name: db
     environment:
       POSTGRES_PASSWORD: senha2
       POSTGRES_USER: admin
       POSTGRES_DB: api-estudos
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
 
   adminer:
     image: adminer
     ports:
       - 8080:8080
+
+
+volumes:
+  postgres_data:
