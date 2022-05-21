@@ -3,6 +3,9 @@ from uuid import uuid4
 
 
 # Create your models here.
+from rest_framework import serializers
+
+
 def upload_writer_image(instance, filename):
     return f'{instance.id}-{filename}'
 
@@ -24,3 +27,11 @@ class Article(models.Model):
     summary = models.TextField()
     first_paragraph = models.TextField()
     body = models.TextField()
+
+    def clean(self):
+        if len(self.body) < 50:
+            raise serializers.ValidationError({'body': 'body need to have at least 50 digits'})
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
