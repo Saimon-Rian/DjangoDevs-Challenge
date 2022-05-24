@@ -4,18 +4,30 @@ from rest_framework.response import Response
 from .models import Article, Author
 from .serializers import GenericArticleSerializer, AuthorSerializer, ArticleAnonSerializer, LoggedArticleSerializer, \
     RegisterSerializer
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class AuthorViewSets(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
     serializer_class = AuthorSerializer
     queryset = Author.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['name', 'id']
 
 
 class ArticleViewSets(viewsets.ModelViewSet):
     serializer_class = GenericArticleSerializer
     queryset = Article.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category']
+
+
+class AnonymousArticlesViewSets(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = Article.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filter_fields = ['category']
 
     def get_serializer_class(self):
         if self.request.user.is_authenticated:

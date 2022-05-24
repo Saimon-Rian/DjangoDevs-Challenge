@@ -12,9 +12,10 @@ route.register('authors', AuthorViewSets, basename='authors')
 route.register('articles', ArticleViewSets, basename='articles')
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
-    path('api/admin/register/', Register.as_view(), name='register'),
-    path('api/admin/login/', TokenObtainPairView.as_view()),
-    path('api/admin/login/refresh/', TokenRefreshView.as_view()),
+    path('api/register/', Register.as_view(), name='register'),
+    path('api/login/', TokenObtainPairView.as_view()),
+    path('api/login/refresh/', TokenRefreshView.as_view()),
     path('api/admin/', include(route.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
