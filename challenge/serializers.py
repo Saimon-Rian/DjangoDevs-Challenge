@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from rest_framework import serializers, generics, permissions
+from rest_framework import serializers
 from .models import Author, Article
 
 
@@ -9,6 +9,7 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+# Article generic
 class GenericArticleSerializer(serializers.ModelSerializer):
     author = AuthorSerializer(many=False, read_only=True)
     author_id = serializers.UUIDField(write_only=True)
@@ -18,16 +19,22 @@ class GenericArticleSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+# Logged article
 class LoggedArticleSerializer(GenericArticleSerializer):
     pass
 
 
+# Anonymous user
 class ArticleAnonSerializer(GenericArticleSerializer):
+    author = AuthorSerializer(many=False, read_only=True)
+    author_id = serializers.UUIDField(write_only=True)
+
     class Meta:
         model = Article
         exclude = ('body', )
 
 
+# Register user
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=50, min_length=6)
     username = serializers.CharField(max_length=50, min_length=6)

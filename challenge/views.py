@@ -16,13 +16,16 @@ class AuthorViewSets(viewsets.ModelViewSet):
     filterset_fields = ['name', 'id']
 
 
+# Admin
 class ArticleViewSets(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
     serializer_class = GenericArticleSerializer
     queryset = Article.objects.all()
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['category']
 
 
+# Logout User
 class AnonymousArticlesViewSets(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Article.objects.all()
@@ -36,6 +39,7 @@ class AnonymousArticlesViewSets(viewsets.ModelViewSet):
             return ArticleAnonSerializer
 
 
+# Register User
 class Register(generics.GenericAPIView):
     serializer_class = RegisterSerializer
 
