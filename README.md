@@ -2,7 +2,8 @@ Project objectives
 -
 
 This project was made as my participation in the Django-Devs-001 challenge. This project is an API made in Django with 
-rest architecture in integration with Postman.
+rest architecture in integration with Postman. Also used to test my API skills and show my knowledge. 
+I will continue to develop this project with new technologies and acquired knowledge.
 
 What needs to be installed
 -
