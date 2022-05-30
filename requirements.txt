@@ -5,3 +5,5 @@ Pillow==7.0.0
 Markdown==3.3.7
 psycopg2-binary==2.9.3
 djangorestframework-simplejwt
+coverage==6.4
+ipdb==0.13.9

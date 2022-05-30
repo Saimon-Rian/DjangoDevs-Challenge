@@ -1,19 +1,15 @@
 Project objectives
 -
 
-This django project was made as a test of skills. In it, you will find a makefile, 
-there are explanations of what each command does, a Dockerfile, a docker-compose with all the necessary 
-configurations for your project to run the way it should, the requirements.txt 
-that contains all the necessary libs. To install requirements run the command: 
-pip install -r requirements.txt
-
+This project was made as my participation in the Django-Devs-001 challenge. This project is an API made in Django with 
+rest architecture in integration with Postman.
 
 What needs to be installed
 -
 
-- docker-compose
-- makefile
-- docker
+- Docker
+- Docker-compose
+- Makefile
 
 # API End-Points
 
@@ -27,6 +23,51 @@ What needs to be installed
     0.0.0.0:8000/api/admin/authors
     0.0.0.0:8000/api/admin/articles
 
-Font:
+
+# Makefile commands:
+
+To install all the requirements and make migrations run:
+-
+
+    make build
+
+To build docker-compose:
+-
+
+    make up
+
+To take down docker-compose:
+-
+
+    make down
+
+To run the tests:
+-
+
+    make tests
+
+To see the coverage of your application: 
+-
+- The coverage percentage also appears on your terminal.
+
+- For a more detailed report, go to "htmlconv" folder and look for index.html.
+
+
+    make coverage
+
+To set the ipdb trace:
+-
+- Remember to put the ipdb in your code before doing the "make attach".
+
+
+    make attach
+
+To see actions taken on URLs:
+-
+
+    make logs
+
+
+Source:
 -
 https://github.com/JungleDevs/django-challenge-001

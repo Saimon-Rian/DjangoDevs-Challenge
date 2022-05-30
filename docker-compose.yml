@@ -3,8 +3,8 @@ version: '3.8'
 services :
 
   web:
-    #build: .
     image: challenge_web:latest
+    container_name: web
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./:/usr/src/app
