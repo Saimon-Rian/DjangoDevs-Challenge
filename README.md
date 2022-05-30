@@ -12,18 +12,6 @@ What needs to be installed
 - Docker-compose
 - Makefile
 
-# API End-Points
-
-- You can now open the API in the Postman and import Collections and Environment from Postman directory
-
-
-    0.0.0.0:8000/api/articles
-    0.0.0.0:8000/api/sign-up
-    0.0.0.0:8000/api/login
-    0.0.0.0:8000/api/login/refresh
-    0.0.0.0:8000/api/admin/authors
-    0.0.0.0:8000/api/admin/articles
-
 
 # Makefile commands:
 
